@@ -1,0 +1,58 @@
+{
+  "seeds": [
+    42,
+    7,
+    19,
+    73,
+    101
+  ],
+  "conditions": [
+    "none",
+    "weighted",
+    "oversampled"
+  ],
+  "fit_size": 640,
+  "validation_size": 160,
+  "test_size": 200,
+  "criterion": "maximum validation balanced accuracy; first trial wins exact ties",
+  "threshold": "0.20 to 0.80 inclusive by .01; original choose_threshold first maximum",
+  "anfis_trials": [
+    {
+      "lr": 0.01,
+      "l2": 0.001
+    },
+    {
+      "lr": 0.03,
+      "l2": 0.01
+    }
+  ],
+  "mlp_trials": [
+    {
+      "lr": 0.001,
+      "alpha": 0.0001
+    },
+    {
+      "lr": 0.003,
+      "alpha": 0.01
+    }
+  ],
+  "logistic_C": [
+    0.1,
+    1.0
+  ],
+  "max_epochs": 400,
+  "patience": 50,
+  "feature_names": [
+    "month_duration",
+    "credit_amount",
+    "payment_to_income_ratio",
+    "age"
+  ],
+  "dimension_seeds": [
+    42,
+    7,
+    19
+  ],
+  "case_criteria": "seed 42 weighted tuned fixed ANFIS: lowest row id correct bad; lowest row id incorrect good; fallback lowest id in requested correctness group",
+  "status": "predeclared before execution of new experiments; exploratory extension of previously inspected project"
+}

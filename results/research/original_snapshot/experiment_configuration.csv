@@ -1,0 +1,15 @@
+Setting,Value
+Dataset,german_credit_data.csv
+Target,target
+Features,"month_duration, credit_amount, payment_to_income_ratio, age"
+Test size,0.2
+Validation size within training set,0.2
+Random state,42
+Class balancing,ANFIS weighted loss; NN random oversampling
+Decision threshold,ANFIS=0.51; NN=0.50
+ANFIS membership functions,"LOW, MEDIUM, HIGH (Gaussian)"
+ANFIS number of rules,81
+ANFIS epochs,500
+ANFIS learning rate,0.02
+ANFIS bad-class weight,2.33
+NN architecture,"(16, 8) + sigmoid output"

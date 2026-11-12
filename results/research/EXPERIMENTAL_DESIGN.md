@@ -1,0 +1,36 @@
+# Experimental design: new exploratory extension
+
+This design is distinct from the original single-split experiment. `config.json` was written before the new experiments executed. It was designed after reading the repository and seeing its historical results, so it is an exploratory extension, not a preregistered confirmatory study. The actual RQ wording cannot be checked because the report is absent. Working RQs follow the task: predictive comparison under imbalance; dimension/rule/runtime sensitivity; faithful individual explanations.
+
+## Partitions and preprocessing
+
+Seeds are 42, 7, 19, 73, 101, each with stratified 640/160/200 fitting/validation/test rows. `split_assignments.csv` retains every zero-based source-row ID and label. Models within each seed use identical partitions. Standardization is fitted on the 640 fitting rows before weighting or oversampling, then reused across models. It is not refitted on validation, test or duplicate-augmented training data. No fitting+validation refit follows model selection; that keeps the fitted model and selected threshold aligned.
+
+The three conditions are unadjusted, class weighted (bad=2.33, good=1), and training-only random oversampling (448 of each class). Same seed and resampling indices are used across models. Validation is never resampled. Weighted and oversampled ANFIS use corresponding weighted validation objectives for epoch stopping; weighting validation loss does not fit the model on those records. MLP validation stopping uses balanced accuracy. These distinct stopping losses are transparent procedural differences.
+
+## Models and bounded budgets
+
+1. `original`: unchanged SimpleANFIS architecture, full-batch GD, 500 epochs, learning rate .02; one fixed reference, no tuning. The unchanged full program uses ANFIS weights and MLP oversampling; the original architecture is also rerun under each matched new condition.
+2. `fixed_adam`: same full-grid first-order consequents and fixed quantile Gaussians, with log-domain normalized firing, full-batch Adam, L2 coefficient penalty. Trials (lr=.01,l2=.001) and (lr=.03,l2=.01). At most 400 epochs, patience 50, validation penalized BCE improvement tolerance 1e-6. The best validation-objective epoch is restored.
+3. `trainable_adam`: same trials, budget and inference as fixed Adam, with trainable centres and log widths. Widths are exp(log_width) and projected to [.05,5] in standardized units. Gradients account for shared antecedents and normalized firing. Finite-difference tests cover all coefficients and premise parameters on a small weighted problem. LOW/MEDIUM/HIGH refer to initialization order; learning does not constrain centre order.
+4. `mlp`: original (16,8) ReLU architecture and Adam, with trials (lr=.001,alpha=.0001) and (lr=.003,alpha=.01). Uses `partial_fit` and the external validation set, at most 400 epochs and patience 50. Stops on maximum validation balanced accuracy with a validation threshold. Restores the fitted checkpoint. No internal split of duplicated data occurs.
+5. `logistic`: L2-regularized logistic regression with C in {.1,1}, max_iter 1000, sklearn default lbfgs solver.
+6. `dummy`: majority-class prediction at threshold .5, with a constant score equal to fitting bad-class prevalence (.3). The separate validation-threshold result can predict every case as bad because balanced accuracy ties and the lowest threshold wins. The dummy ignores imbalance adjustments and serves as the same reference in each condition.
+
+Two trials per tunable model make the search budget explicit; compute and epoch costs are not identical. Original is a historical reference and dummy has no search. MLP gets epoch-level threshold/BA stopping while ANFIS gets loss stopping; neither is guaranteed globally optimal. Search times and selected-trial fit times are both retained; each includes its own validation computations. These are local, one-thread elapsed timings, not hardware-independent benchmarks.
+
+Each candidate receives the external validation set only. Select the trial by maximum validation balanced accuracy after validation-only threshold search (grid .20–.80 by .01). Exact trial ties use trial order; threshold ties use first grid position. Test scores are produced only after candidate selection. Default .5 and selected thresholds are evaluated separately. No test scores select hyperparameters, epochs, thresholds, features or explanation criteria. Test threshold-sensitivity curves are descriptive diagnostics only.
+
+## Outcomes, pairing and uncertainty
+
+Positive means bad credit. CSVs contain accuracy, balanced accuracy, positive precision/recall/F1, specificity, ROC-AUC, average precision, Brier score, TN/FP/FN/TP, predicted-positive fraction and time. Brier scores describe the uncalibrated outputs; no calibration claim is made, especially under altered training priors. `all_trials.csv` records every candidate, validation score, selected threshold, epochs and time. `test_predictions.csv` and checkpoints permit independent metric reconstruction.
+
+For each model-condition-threshold combination, report mean, sample SD (ddof=1), median, minimum and maximum over five splits. Paired differences use exactly matching seeds, conditions and threshold modes. Repeated holdouts overlap; no ordinary t-test, independent-split CI or significance claim is used. A supplementary stratified paired bootstrap on seed 42, if present in `conditional_bootstrap.csv`, is explicitly conditional on those two trained models and that test partition; it does not cover tuning or training uncertainty. Multiple comparisons remain exploratory.
+
+## Diagnosis, dimensionality and cases
+
+All tuning trajectories are saved. Original GD is separately replayed with mathematically equivalent cached/vectorized consequent updates, and its coefficients checked against the unchanged implementation. A same-initialization, same-epoch validation-only learning-rate ablation probes optimization. This is a diagnostic, not a post-test change to the selected comparison. Score distributions, rule concentration, coverage, normalized sums, coefficient magnitudes, confusion matrices and initialization sensitivity are retained.
+
+Dimension experiments use seeds 42,7,19, weighted learning, 4/5/6 inputs, original GD and a fixed Adam configuration (.01,.001). Original requested additions are residence then number of credits. Separate train-only mutual-information ranking chooses from residence_since, n_credits, n_guarantors; all are treated as discrete for ranking. Report both chosen 5/6-input variants even when they coincide with the requested variants. This is restricted sensitivity, not unrestricted feature search. There is no compact-rule implementation or reproduction of Cao et al.
+
+Cases use seed 42, weighted fixed Adam and its validation-selected threshold, specified before new fitting. Select the smallest row ID among correctly predicted bad cases and the smallest ID among incorrectly predicted good cases; if a group is empty use the smallest ID in its correctness category. Do not select on contribution size or explanation aesthetics. Export all 81 contributions and all 12 membership grades, not only displayed top rules. Tests reconstruct logits and scores against the saved checkpoint.

@@ -1,0 +1,60 @@
+{
+  "shape": [
+    1000,
+    21
+  ],
+  "columns": [
+    "status_account",
+    "month_duration",
+    "credit_history",
+    "purpose",
+    "credit_amount",
+    "status_savings",
+    "years_employment",
+    "payment_to_income_ratio",
+    "status_and_sex",
+    "secondary_obligor",
+    "residence_since",
+    "collateral",
+    "age",
+    "other_installment_plans",
+    "housing",
+    "n_credits",
+    "job",
+    "n_guarantors",
+    "telephone",
+    "is_foreign_worker",
+    "target"
+  ],
+  "missing": 0,
+  "duplicate_rows": 0,
+  "target_counts": [
+    700,
+    300
+  ],
+  "numeric_unique": {
+    "payment_to_income_ratio": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "residence_since": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_credits": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_guarantors": [
+      1,
+      2
+    ]
+  },
+  "sha256": "b0304c276a99d0e7d87ae4b23dcc6f48ef8456a7d040a9923640ef2986740130"
+}

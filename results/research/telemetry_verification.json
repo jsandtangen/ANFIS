@@ -1,0 +1,20 @@
+{
+  "max_coefficient_difference": 2.7755575615628914e-17,
+  "initial": {
+    "epoch": 0,
+    "training_bce": 0.6933028232634716,
+    "validation_bce": 0.6927674061974373,
+    "gradient_l2": 0.031185023329186556,
+    "parameter_l2": 0.9527052926858166,
+    "max_rule_gradient": 0.013283053748722774
+  },
+  "final": {
+    "epoch": 500,
+    "training_bce": 0.6849036561354468,
+    "validation_bce": 0.6916172729057593,
+    "gradient_l2": 0.02689077598616897,
+    "parameter_l2": 0.9934942914849375,
+    "max_rule_gradient": 0.01105594225800341
+  },
+  "normalization_only_max_test_logit_difference": 0.31998220117939197
+}

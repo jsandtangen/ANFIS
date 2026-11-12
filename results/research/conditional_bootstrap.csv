@@ -1,0 +1,6 @@
+metric,lower,upper,repetitions,seed,comparison,interpretation
+balanced_accuracy,-0.08812500000000012,0.050000000000000044,2000,20261112,fixed_adam minus mlp; seed42 weighted validation thresholds,stratified paired percentile interval conditional on fitted models and test partition; no training/tuning uncertainty
+recall,0.09999999999999998,0.30000000000000004,2000,20261112,fixed_adam minus mlp; seed42 weighted validation thresholds,stratified paired percentile interval conditional on fitted models and test partition; no training/tuning uncertainty
+f1,-0.0591782726435868,0.06431369837758112,2000,20261112,fixed_adam minus mlp; seed42 weighted validation thresholds,stratified paired percentile interval conditional on fitted models and test partition; no training/tuning uncertainty
+roc_auc,-0.06131250000000012,0.11881249999999999,2000,20261112,fixed_adam minus mlp; seed42 weighted validation thresholds,stratified paired percentile interval conditional on fitted models and test partition; no training/tuning uncertainty
+average_precision,-0.10732488479825676,0.1160567226388261,2000,20261112,fixed_adam minus mlp; seed42 weighted validation thresholds,stratified paired percentile interval conditional on fitted models and test partition; no training/tuning uncertainty

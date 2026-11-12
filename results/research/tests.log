@@ -1,0 +1,11 @@
+test_case_reconstruction_against_checkpoint (test_research.ArtifactTests.test_case_reconstruction_against_checkpoint) ... ok
+test_saved_metrics_from_predictions (test_research.ArtifactTests.test_saved_metrics_from_predictions) ... ok
+test_metrics_and_threshold (test_research.NumericalTests.test_metrics_and_threshold) ... ok
+test_paired_split_and_resampling_integrity (test_research.NumericalTests.test_paired_split_and_resampling_integrity) ... ok
+test_premise_and_consequent_gradients (test_research.NumericalTests.test_premise_and_consequent_gradients) ... ok
+test_stable_inference_and_original_agreement (test_research.NumericalTests.test_stable_inference_and_original_agreement) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.803s
+
+OK

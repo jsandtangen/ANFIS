@@ -1,0 +1,27 @@
+{
+  "python": "3.11.13",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
+  "logical_cpus": 12,
+  "threads": 1,
+  "wall_seconds": 297.28184079999846,
+  "wall_scope": "completion run only: repeated dimensionality fits plus initialization sensitivity; initial main-study total wall time unavailable",
+  "packages": {
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.7",
+    "threadpoolctl": "3.6.0"
+  },
+  "source_hashes": {
+    "main.py": "fbdb6cd9bd12280b3cd98f13255194225407187ff7191ed6a876ae4b1010e070",
+    "research_models.py": "484d6b0f9b7a213e219576beabf5068da1f50a3e99737184d40b2c44e794eb0f",
+    "research_pipeline.py": "5fb14f9ebce49b8793485d7ca1c55cdb7f096dbadc5729ef1c27d28737d49926",
+    "reproduce_original.py": "f5ca652084a1c8b2af99b2ca39dcf8d8203edf8760e775832be36cb914e02a1f",
+    "finish_research.py": "d82f3e9ff497736880aa461e69476421a3a2f0f36f53dd305acf98ca5743d5c3"
+  },
+  "interruption": "Initial process ended before final dimension table, initialization sensitivity or environment output was saved. Completed main-study checkpoints, scores and trials survived. Cause not confirmed. Dimension experiments were rerun in full with per-fit persistence; no numeric values inferred from incomplete log.",
+  "initial_mainstudy_source": "executed_source/research_pipeline_initial.py",
+  "memory": "CIM RAM query denied; workspace is explicit array estimate, not peak memory"
+}

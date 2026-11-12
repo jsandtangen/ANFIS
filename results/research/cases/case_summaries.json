@@ -1,0 +1,70 @@
+[
+  {
+    "row_zero_based": 1,
+    "csv_line_including_header": 3,
+    "true_label": 1,
+    "predicted_label": 1,
+    "score": 0.5756671256424893,
+    "threshold": 0.47000000000000025,
+    "scaled_inputs": [
+      2.240084374334162,
+      0.9855785906114148,
+      -0.8573354355049446,
+      -1.2226403295668138
+    ],
+    "original_inputs": [
+      48.0,
+      5951.0,
+      2.0,
+      22.0
+    ],
+    "direct_logit": 0.3050113585237642,
+    "reconstructed_logit": 0.3050113585237642,
+    "error": 0.0,
+    "positive_contribution_sum": 0.31158048061486676,
+    "negative_contribution_sum": -0.00656912209110254,
+    "top_absolute_rule_ids": [
+      72,
+      73,
+      75,
+      76,
+      66
+    ],
+    "rules_csv": "cases/case_row_1_rules.csv",
+    "membership_csv": "cases/case_row_1_memberships.csv"
+  },
+  {
+    "row_zero_based": 6,
+    "csv_line_including_header": 8,
+    "true_label": 0,
+    "predicted_label": 1,
+    "score": 0.4896835272005872,
+    "threshold": 0.47000000000000025,
+    "scaled_inputs": [
+      0.2509702576864149,
+      -0.1497168598093262,
+      0.034851033963615635,
+      1.5703572684303753
+    ],
+    "original_inputs": [
+      24.0,
+      2835.0,
+      3.0,
+      53.0
+    ],
+    "direct_logit": -0.04127174857754576,
+    "reconstructed_logit": -0.04127174857754576,
+    "error": 0.0,
+    "positive_contribution_sum": 0.053225152483262865,
+    "negative_contribution_sum": -0.09449690106080863,
+    "top_absolute_rule_ids": [
+      68,
+      59,
+      41,
+      65,
+      32
+    ],
+    "rules_csv": "cases/case_row_6_rules.csv",
+    "membership_csv": "cases/case_row_6_memberships.csv"
+  }
+]

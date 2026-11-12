@@ -1,0 +1,231 @@
+
+
+======================================================================
+ACIT4620 - EXPLAINABLE CREDIT RISK WITH ANFIS
+======================================================================
+
+======================================================================
+DATASET
+======================================================================
+File: C:\Users\jsand\OneDrive - OsloMet\NETTSKY\SKOLE\26-27\SEMESTER 1\ACIT 4620\ANFIS\data\german_credit_data.csv
+Rows: 1000
+Columns: 21
+
+Columns:
+['status_account', 'month_duration', 'credit_history', 'purpose', 'credit_amount', 'status_savings', 'years_employment', 'payment_to_income_ratio', 'status_and_sex', 'secondary_obligor', 'residence_since', 'collateral', 'age', 'other_installment_plans', 'housing', 'n_credits', 'job', 'n_guarantors', 'telephone', 'is_foreign_worker', 'target']
+
+======================================================================
+DATA INSPECTION
+======================================================================
+
+First five rows:
+        status_account  month_duration                                               credit_history              purpose  credit_amount               status_savings years_employment  payment_to_income_ratio                       status_and_sex secondary_obligor  residence_since                        collateral  age other_installment_plans   housing  n_credits                         job  n_guarantors                                 telephone is_foreign_worker target
+0               < 0 DM               6  critical account/ other credits existing (not at this bank)     radio/television           1169  unknown/ no savings account       >= 7 years                        4                        male : single              none                4                              none   67                    none       own          2  skilled employee/ official             1  yes, registered under the customers name               yes   good
+1        0 to < 200 DM              48                     existing credits paid back duly till now     radio/television           5951                     < 100 DM   1 to < 4 years                        2  female : divorced/separated/married              none                2                              none   22                    none       own          1  skilled employee/ official             1                                      none               yes    bad
+2  no checking account              12  critical account/ other credits existing (not at this bank)            education           2096                     < 100 DM   4 to < 7 years                        2                        male : single              none                3                              none   49                    none       own          1        unskilled - resident             2                                      none               yes   good
+3               < 0 DM              42                     existing credits paid back duly till now  furniture/equipment           7882                     < 100 DM   4 to < 7 years                        2                        male : single         guarantor                4                               car   45                    none  for free          1  skilled employee/ official             2                                      none               yes   good
+4               < 0 DM              24                              delay in paying off in the past            car (new)           4870                     < 100 DM   1 to < 4 years                        3                        male : single              none                4  savings agreement/life insurance   53                    none  for free          2  skilled employee/ official             2                                      none               yes    bad
+
+Missing values:
+status_account             0
+month_duration             0
+credit_history             0
+purpose                    0
+credit_amount              0
+status_savings             0
+years_employment           0
+payment_to_income_ratio    0
+status_and_sex             0
+secondary_obligor          0
+residence_since            0
+collateral                 0
+age                        0
+other_installment_plans    0
+housing                    0
+n_credits                  0
+job                        0
+n_guarantors               0
+telephone                  0
+is_foreign_worker          0
+target                     0
+
+Duplicate rows: 0
+
+Target distribution:
+target
+good    700
+bad     300
+
+Data types:
+status_account             object
+month_duration              int64
+credit_history             object
+purpose                    object
+credit_amount               int64
+status_savings             object
+years_employment           object
+payment_to_income_ratio     int64
+status_and_sex             object
+secondary_obligor          object
+residence_since             int64
+collateral                 object
+age                         int64
+other_installment_plans    object
+housing                    object
+n_credits                   int64
+job                        object
+n_guarantors                int64
+telephone                  object
+is_foreign_worker          object
+target                     object
+
+======================================================================
+EXPLORATORY DATA ANALYSIS
+======================================================================
+
+Selected feature statistics:
+       month_duration  credit_amount  payment_to_income_ratio      age
+count         1000.00        1000.00                  1000.00  1000.00
+mean            20.90        3271.26                     2.97    35.55
+std             12.06        2822.74                     1.12    11.38
+min              4.00         250.00                     1.00    19.00
+25%             12.00        1365.50                     2.00    27.00
+50%             18.00        2319.50                     3.00    33.00
+75%             24.00        3972.25                     4.00    42.00
+max             72.00       18424.00                     4.00    75.00
+
+======================================================================
+TRAIN / VALIDATION / TEST SPLIT
+======================================================================
+Training samples:   640
+Validation samples: 160
+Testing samples:    200
+
+Class counts in training set:
+target
+Good    448
+Bad     192
+
+======================================================================
+TRAINING ANFIS
+======================================================================
+
+ANFIS: 81 rules, 4 inputs, 500 epochs
+Epoch   1/500 - loss: 0.69330
+Epoch  25/500 - loss: 0.69284
+Epoch  50/500 - loss: 0.69236
+Epoch  75/500 - loss: 0.69190
+Epoch 100/500 - loss: 0.69143
+Epoch 125/500 - loss: 0.69098
+Epoch 150/500 - loss: 0.69053
+Epoch 175/500 - loss: 0.69009
+Epoch 200/500 - loss: 0.68966
+Epoch 225/500 - loss: 0.68923
+Epoch 250/500 - loss: 0.68881
+Epoch 275/500 - loss: 0.68839
+Epoch 300/500 - loss: 0.68798
+Epoch 325/500 - loss: 0.68758
+Epoch 350/500 - loss: 0.68718
+Epoch 375/500 - loss: 0.68679
+Epoch 400/500 - loss: 0.68641
+Epoch 425/500 - loss: 0.68603
+Epoch 450/500 - loss: 0.68565
+Epoch 475/500 - loss: 0.68528
+Epoch 500/500 - loss: 0.68492
+Selected ANFIS threshold from validation set: 0.51
+
+======================================================================
+ANFIS
+======================================================================
+Threshold   : 0.51
+Accuracy    : 0.7300
+Precision   : 0.5714
+Recall      : 0.4000
+F1          : 0.4706
+ROC-AUC     : 0.6904
+
+Classification report:
+              precision    recall  f1-score   support
+
+        Good       0.77      0.87      0.82       140
+         Bad       0.57      0.40      0.47        60
+
+    accuracy                           0.73       200
+   macro avg       0.67      0.64      0.64       200
+weighted avg       0.71      0.73      0.71       200
+
+Confusion matrix:
+[[122  18]
+ [ 36  24]]
+
+======================================================================
+TRAINING NEURAL NETWORK BASELINE
+======================================================================
+Selected NN threshold from validation set: 0.50
+
+======================================================================
+Neural Network
+======================================================================
+Threshold   : 0.50
+Accuracy    : 0.6900
+Precision   : 0.4853
+Recall      : 0.5500
+F1          : 0.5156
+ROC-AUC     : 0.6927
+
+Classification report:
+              precision    recall  f1-score   support
+
+        Good       0.80      0.75      0.77       140
+         Bad       0.49      0.55      0.52        60
+
+    accuracy                           0.69       200
+   macro avg       0.64      0.65      0.64       200
+weighted avg       0.70      0.69      0.70       200
+
+Confusion matrix:
+[[105  35]
+ [ 27  33]]
+
+======================================================================
+FINAL MODEL COMPARISON
+======================================================================
+         Model  Accuracy  Precision  Recall     F1  ROC-AUC
+         ANFIS    0.7300     0.5714  0.4000 0.4706   0.6904
+Neural Network    0.6900     0.4853  0.5500 0.5156   0.6927
+
+======================================================================
+ANFIS EXPLAINABILITY
+======================================================================
+
+All fuzzy rules saved to:
+results\research\original_reproduction\anfis_rules.txt
+
+First 10 rules:
+Rule 1: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is LOW AND age is LOW THEN output = 0.0268*month_duration + -0.0491*credit_amount + 0.0490*payment_to_income_ratio + 0.0488*age + -0.1061
+Rule 2: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is LOW AND age is MEDIUM THEN output = -0.0500*month_duration + 0.0118*credit_amount + -0.0005*payment_to_income_ratio + -0.0027*age + -0.0559
+Rule 3: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is LOW AND age is HIGH THEN output = 0.0700*month_duration + 0.0525*credit_amount + 0.0299*payment_to_income_ratio + 0.0280*age + -0.0009
+Rule 4: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is MEDIUM AND age is LOW THEN output = -0.0358*month_duration + 0.0195*credit_amount + -0.0455*payment_to_income_ratio + 0.0430*age + -0.0059
+Rule 5: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is MEDIUM AND age is MEDIUM THEN output = 0.0010*month_duration + -0.0307*credit_amount + 0.0642*payment_to_income_ratio + -0.0110*age + -0.0289
+Rule 6: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is MEDIUM AND age is HIGH THEN output = 0.0007*month_duration + 0.0384*credit_amount + 0.0193*payment_to_income_ratio + -0.0007*age + 0.0038
+Rule 7: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is HIGH AND age is LOW THEN output = 0.1119*month_duration + -0.0211*credit_amount + -0.0243*payment_to_income_ratio + -0.0418*age + 0.0308
+Rule 8: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is HIGH AND age is MEDIUM THEN output = 0.0634*month_duration + -0.0052*credit_amount + -0.0418*payment_to_income_ratio + -0.0450*age + 0.0300
+Rule 9: IF month_duration is LOW AND credit_amount is LOW AND payment_to_income_ratio is HIGH AND age is HIGH THEN output = 0.0521*month_duration + 0.0371*credit_amount + -0.0431*payment_to_income_ratio + -0.0123*age + -0.0090
+Rule 10: IF month_duration is LOW AND credit_amount is MEDIUM AND payment_to_income_ratio is LOW AND age is LOW THEN output = 0.0230*month_duration + 0.0462*credit_amount + 0.0243*payment_to_income_ratio + 0.0364*age + -0.0064
+
+======================================================================
+DONE
+======================================================================
+
+Generated folders:
+Figures: results\research\original_reproduction\figures
+Results: results\research\original_reproduction
+
+You can now use the generated:
+- EDA figures
+- ANFIS loss curve
+- Confusion matrices
+- ROC comparison
+- Model comparison CSV
+- Fuzzy rules
+- Membership-function parameters

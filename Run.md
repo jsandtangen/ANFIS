@@ -1,19 +1,17 @@
-python -m venv .venv
->> .venv\Scripts\activate
->> pip install -r requirements.txt
->> python main.py
+﻿# Running the project
 
-Bruk denne for å kjøre vårt lille barn, husk å cd/..... 
--Benjamin Netenyahu
+See README.md for the complete pinned research workflow.
 
-source .venv/bin/activate.fish
+For the unchanged original program (writes top-level result/figure files):
 
-pip install -r requirements.txt
-python main.py
+```powershell
+.\.research-venv\Scripts\python.exe main.py
+```
 
-python3 -m venv .venv
-source .venv/bin/activate.fish
-pip install -r requirements.txt
-python main.py 
+For a preserved, separately saved original reproduction:
 
-...
+```powershell
+.\.research-venv\Scripts\python.exe reproduce_original.py
+```
+
+The original Run.md is retained in results/research/original_snapshot/.

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "required_documents": 10,
+  "checkpoints_recomputed": 90,
+  "maximum_score_difference": 1.1102230246251565e-16,
+  "maximum_scaler_mean_difference": 0.0,
+  "dimension_rows": 30,
+  "original_source_and_result_bytes_preserved": true,
+  "dimension_convergence_replays": 30,
+  "notes": "These consistency checks do not validate missing report/exam compliance or prove absence of every possible design error."
+}
